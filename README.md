@@ -14,7 +14,10 @@ It's also possible to send content type metadata:
 
 ## Subscribing
 
-For subscribing, we provide a js library that can use either long polling, server sent events or websocket.
+For subscribing, we provide a js library that can use either `long polling`, `server sent events` or `websocket`.
+
+Latest subscriber js library build is available in `dist` folder.
+
 To use the library instantiate the `ThrustaSubscriber` class:
 
 ```javascript
@@ -76,9 +79,3 @@ sub.lastMessageId; //last message id. useful for resuming a connection without l
 sub.start(); // begin (or resume) subscribing
 sub.stop(); // stop subscriber. do not reconnect.
 ```
-
-## Build
-
-Latest subscriber js library build is available in `dist` folder.
-
-You may also build it from source using `npm run build` 
