@@ -105,12 +105,12 @@ var sharedSubscriberTable = {};
 
 "use strict";
 
-function ThrustaSubscriber(url, opt) {
+function ThrustaSubscriber(channelName, opt) {
     if (typeof window !== "undefined" && this === window) {
         throw "use 'new ThrustaSubscriber(...)' to initialize";
     }
 
-    this.url = url;
+    this.url = 'https://thrusta.io/sub/' + channelName;
     opt = opt || {};
 
     //which transport should i use?

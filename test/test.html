@@ -6,8 +6,7 @@
 <div id="messages"></div>
 </body>
 <script type="text/javascript">
-    const subscriber = new ThrustaSubscriber(
-        'https://thrusta.io/sub/testchannel', {
+    const subscriber = new ThrustaSubscriber('testchannel', {
             subscriber: 'websocket',
             reconnect: 'persist',
             shared: true

@@ -18,11 +18,16 @@ For subscribing, we provide a js library that can use either `long polling`, `se
 
 Latest subscriber js library build is available in `dist` folder.
 
-To use the library instantiate the `ThrustaSubscriber` class:
+To use the library instantiate the `ThrustaSubscriber` class providing the channel name and options object:
+
+```javascript 
+let ch = 'channel-name';
+let sub = new ThrustaSubscriber(ch, opt);
+```
+
+Following options are available:
 
 ```javascript
-let url = 'https://thrusta.io/sub/{channel-name}'; // substitute {channel-name} with the name used to publish 
-let sub = new ThrustaSubscriber(url, opt);
 opt = {
   subscriber: 'longpoll', 'eventsource', or 'websocket',
     //or an array of the above indicating subscriber type preference
@@ -34,7 +39,30 @@ opt = {
     //windows and tabs using localStorage. In shared mode,
     //only 1 running subscriber is allowed per url per window/tab.
 }
+```
 
+Additional options are also available:
+
+```javascript
+sub.reconnect; // should subscriber try to reconnect? true by default.
+sub.reconnectTimeout; //how long to wait to reconnect? does not apply to EventSource, which reconnects on its own.
+sub.lastMessageId; //last message id. useful for resuming a connection without loss or repetition.
+```
+
+The subscriber object emits several events which you can subscribe to using the `on` method.  
+
+The most important event is `message` fired when new message comes in:
+
+```javascript
+sub.on("message", function(message, message_metadata) {
+  // message is a string
+  // message_metadata may contain 'id' and 'content-type'
+});
+```
+
+And there are few technical events:
+
+```javascript
 sub.on("transportSetup", function(opt, subscriberName) {
   // opt is a hash/object - not all transports support all options equally. Only longpoll supports arbitrary headers
   // subscriberName is a string
@@ -55,11 +83,6 @@ sub.on("transportNativeBeforeDestroy", function(nativeTransportObject, subscribe
   // subscriberName is a string
 });
 
-sub.on("message", function(message, message_metadata) {
-  // message is a string
-  // message_metadata may contain 'id' and 'content-type'
-});
-
 sub.on('connect', function(evt) {
   //fired when first connected.
 });
@@ -71,11 +94,12 @@ sub.on('disconnect', function(evt) {
 sub.on('error', function(code, message) {
   //error callback
 });
+```
 
-sub.reconnect; // should subscriber try to reconnect? true by default.
-sub.reconnectTimeout; //how long to wait to reconnect? does not apply to EventSource, which reconnects on its own.
-sub.lastMessageId; //last message id. useful for resuming a connection without loss or repetition.
+Once you have the subscriber object set up call the `start` method to start listening for messages.
+You may also stop listeneing using the `stop` method. 
 
+```
 sub.start(); // begin (or resume) subscribing
 sub.stop(); // stop subscriber. do not reconnect.
 ```
