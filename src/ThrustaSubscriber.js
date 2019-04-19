@@ -105,12 +105,12 @@ var sharedSubscriberTable = {};
 
 "use strict";
 
-function ThrustaSubscriber(channelName, opt) {
+function ThrustaSubscriber(clientName, channelName, opt) {
     if (typeof window !== "undefined" && this === window) {
         throw "use 'new ThrustaSubscriber(...)' to initialize";
     }
 
-    this.url = 'https://thrusta.io/sub/' + channelName;
+    this.url = `https://${clientName}.sub.thrusta.io/${channelName}`;
     opt = opt || {};
 
     //which transport should i use?
@@ -329,7 +329,7 @@ function ThrustaSubscriber(channelName, opt) {
         saveConnectionState = function () {
         };
     } else {
-        var index = "ThrustaSubscriber:" + url + ":lastMessageId";
+        var index = "ThrustaSubscriber:" + this.url + ":lastMessageId";
         var storage;
         if (opt.reconnect == "persist") {
             storage = ("localStorage" in global) && global.localStorage;

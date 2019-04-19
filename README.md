@@ -4,13 +4,15 @@
 
 To publish messages send HTTP POST request to `/pub` endpoint:
 
-`curl --request POST --data 'message' https://thrusta.io/pub/{channel-name}` 
+`curl --request POST --data 'message' https://{client-name}.pub.thrusta.io/{channel-name}` 
 
-and substitute `{channel-name}` with your channel name. 
+and substitute:
+* `{client-name}` with your account name,
+* `{channel-name}` with your channel name. 
 
 It's also possible to send content type metadata:
 
-`curl --request POST --data '{"test": "value"}' -H 'Content-Type: application/json' https://thrusta.io/pub/{channel-name}`  
+`curl --request POST --data '{"test": "value"}' -H 'Content-Type: application/json' https://{client-name}.pub.thrusta.io/{channel-name}`  
 
 ## Subscribing
 
@@ -103,3 +105,7 @@ You may also stop listeneing using the `stop` method.
 sub.start(); // begin (or resume) subscribing
 sub.stop(); // stop subscriber. do not reconnect.
 ```
+
+## Sample usage
+
+Check `test/test.html` file for a subscriber usage example.
