@@ -18,7 +18,11 @@ It's also possible to send content type metadata:
 
 For subscribing, we provide a js library that can use either `long polling`, `server sent events` or `websocket`.
 
-Latest subscriber js library build is available in `dist` folder.
+Latest subscriber js library build is available in `dist` folder or as an [npm dependency](https://www.npmjs.com/package/@thrusta/subscriber).
+
+```
+npm i @thrusta/subscriber
+```
 
 To use the library instantiate the `ThrustaSubscriber` class providing the channel name and options object:
 
