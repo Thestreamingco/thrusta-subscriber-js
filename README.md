@@ -23,7 +23,7 @@ It's also possible to publish messages using web socket connection. The webscoke
 Sample code that uses [wscat2](https://www.npmjs.com/package/wscat2) command line tool to send messages via websocket:
 
 ```
-wscat wss://quik.pub.thrusta.io/testmz
+wscat wss://<client-name>.pub.thrusta.io/<channel-name>
 Hello
 queued messages: 1
 last requested: 328 sec. ago
