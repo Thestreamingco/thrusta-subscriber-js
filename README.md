@@ -2,6 +2,8 @@
 
 ## Publishing
 
+### via HTTP REST
+
 To publish messages send HTTP POST request to `/pub` endpoint:
 
 `curl --request POST --data 'message' https://{client-name}.pub.thrusta.io/{channel-name}` 
@@ -13,6 +15,21 @@ and substitute:
 It's also possible to send content type metadata:
 
 `curl --request POST --data '{"test": "value"}' -H 'Content-Type: application/json' https://{client-name}.pub.thrusta.io/{channel-name}`  
+
+### via Webscokets
+
+It's also possible to publish messages using web socket connection. The webscoket url is just the same as in case of HTTP REST publishing.
+
+Sample code that uses [wscat2](https://www.npmjs.com/package/wscat2) command line tool to send messages via websocket:
+
+```
+wscat wss://quik.pub.thrusta.io/testmz
+Hello
+queued messages: 1
+last requested: 328 sec. ago
+active subscribers: 1
+last message id: 1556023462:0
+```
 
 ## Subscribing
 
