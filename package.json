@@ -1,6 +1,6 @@
 {
   "name": "@thrusta/subscriber",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "## Publishing",
   "main": "index.js",
   "scripts": {
